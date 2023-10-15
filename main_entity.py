@@ -55,3 +55,4 @@ class Main_entity(pygame.sprite.Sprite):
 
 		self.rect.y += self.direction.y * speed
 		self.collison(solid_objects_group, "v")
+		

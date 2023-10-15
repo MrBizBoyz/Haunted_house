@@ -8,7 +8,7 @@ class Lava(pygame.sprite.Sprite):
 
         self.width = width
         self.h = 0
-        self.x = 0 
+        self.x = 0
         self.y = 0
         self.height = self.h
 
@@ -19,7 +19,8 @@ class Lava(pygame.sprite.Sprite):
 
 
     def update(self, main_group):
-        self.image = pygame.Surface([self.width, self.height])
-        self.image.fill((255, 0, 0))
-        self.rect = self.image.get_rect()
-        self.rect.topleft = (self.x, self.y)
+        # self.image = pygame.Surface([self.width, self.height])
+        # self.image.fill((255, 0, 0))
+        # self.rect = self.image.get_rect()
+        # self.rect.topleft = (self.x, self.y)
+        pass

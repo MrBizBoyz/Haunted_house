@@ -34,10 +34,22 @@ class Player(Main_entity):
 
     def update(self, main_group):
         solid_objects_group = main_group.solid_objects_group
+        player_group = main_group.player_group
+        floor_group = main_group.floor_group
+        enemy = main_group.test_enemy_group
         self.gravity()
         self.collide(main_group)
         self.key_input(solid_objects_group, main_group)
         self.move(solid_objects_group, self.speed)
+        if self.health <= 0:
+            self.kill()
+
+        for f in floor_group:
+            if self.rect.x >= GAME_WIDTH // 2 and f.rect.right > 0:
+                f.move_left()
+            else:
+
+                f.move_right()
 
 
     def key_input(self, solid_objects_group, main_group):
@@ -100,15 +112,21 @@ class Player(Main_entity):
         self_group = main_group.player_group
         platforms = pygame.sprite.spritecollide(self, floor_group, False)
         test_enemy = pygame.sprite.spritecollide(self, enemy, False)
+
         for f in platforms:
-
-            if self.rect.bottom < f.rect.bottom:
-
+            if self.rect.bottom <= f.rect.top + abs(self.vel):
                 self.rect.bottom = f.rect.top
                 self.vel = 0
                 self.can_jump = True
                 self.jump_counter = 0
-        for e in test_enemy:
+                self.vel = 0
+            elif self.rect.top >= f.rect.bottom - abs(self.vel):
+                self.rect.top = f.rect.bottom
+                self.vel = 0
 
+        for e in test_enemy:
             if self.rect.bottom < e.rect.bottom:
                 e.kill()
+
+        if self.vel > 0:
+            self.can_jump = True

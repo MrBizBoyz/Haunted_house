@@ -15,6 +15,7 @@ class Load_level():
         self.level = LEVELS
 
         self.level_num = 0
+        self.scroll = False
 
 
 

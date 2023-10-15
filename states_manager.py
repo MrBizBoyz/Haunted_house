@@ -68,8 +68,7 @@ class States_manager():
 
             self.group_manager.get_drawing_group().draw(self.surface)
             self.ml.door(self.group_manager)
-            for l in self.group_manager.lava_group:
-                l.height += 0.1
+
 
 
         if self.state == "paused":
